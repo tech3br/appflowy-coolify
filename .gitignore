@@ -3,6 +3,9 @@
 .env.local
 .env.*.local
 
+# Docker override files
+docker-compose.override.yml
+
 # SSL Certificates
 nginx/ssl/*.crt
 nginx/ssl/*.key
