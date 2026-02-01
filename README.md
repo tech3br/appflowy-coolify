@@ -1,5 +1,8 @@
 <div align="center">
 
+[![en](https://img.shields.io/badge/lang-en-blue.svg)](README.md)
+[![pt-br](https://img.shields.io/badge/lang-pt--br-green.svg)](README.pt.md)
+
 # AppFlowy · Coolify
 
 ### Deploy your workspace. Own your data.
