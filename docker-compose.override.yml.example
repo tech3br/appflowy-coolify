@@ -1,0 +1,34 @@
+# docker-compose.override.yml.example
+# 
+# This file provides example overrides for local development.
+# Copy to docker-compose.override.yml and customize as needed.
+# 
+# The override file is automatically loaded by Docker Compose and 
+# is gitignored for personal customizations.
+
+services:
+  # Example: Expose PostgreSQL for local development tools
+  # postgres:
+  #   ports:
+  #     - "5432:5432"
+
+  # Example: Expose Redis for local development tools
+  # redis:
+  #   ports:
+  #     - "6379:6379"
+
+  # Example: Expose MinIO console for file management
+  # minio:
+  #   ports:
+  #     - "9000:9000"
+  #     - "9001:9001"
+
+  # Example: Enable verbose logging for debugging
+  # appflowy_cloud:
+  #   environment:
+  #     RUST_LOG: debug
+
+  # Example: Add custom volumes for development
+  # appflowy_cloud:
+  #   volumes:
+  #     - ./custom-config:/app/config
