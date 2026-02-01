@@ -186,7 +186,7 @@ docker stats
 
 ```bash
 # Backup PostgreSQL
-docker-compose exec postgres pg_dump -U appflowy appflowy > backup.sql
+docker-compose exec postgres pg_dump -U ${POSTGRES_USER:-postgres} ${POSTGRES_DB:-appflowy} > backup.sql
 
 # Backup MinIO data
 docker-compose exec minio mc mirror /data ./minio-backup
@@ -196,7 +196,7 @@ docker-compose exec minio mc mirror /data ./minio-backup
 
 ```bash
 # Restore PostgreSQL
-cat backup.sql | docker-compose exec -T postgres psql -U appflowy appflowy
+cat backup.sql | docker-compose exec -T postgres psql -U ${POSTGRES_USER:-postgres} ${POSTGRES_DB:-appflowy}
 
 # Restore MinIO data
 docker-compose exec minio mc mirror ./minio-backup /data
@@ -210,6 +210,19 @@ To update to the latest AppFlowy version:
 docker-compose pull
 docker-compose up -d
 ```
+
+**Note**: The docker-compose.yml uses pinned versions for stability and reproducibility. To update to newer versions:
+1. Check the latest releases on Docker Hub for each service
+2. Update the image tags in docker-compose.yml
+3. Test in a non-production environment first
+4. Apply the updates to production
+
+**Image Sources**:
+- AppFlowy Cloud: [appflowyinc/appflowy_cloud](https://hub.docker.com/r/appflowyinc/appflowy_cloud)
+- PostgreSQL: [postgres](https://hub.docker.com/_/postgres)
+- Redis: [redis](https://hub.docker.com/_/redis)
+- MinIO: [minio/minio](https://hub.docker.com/r/minio/minio)
+- GoTrue: [supabase/gotrue](https://hub.docker.com/r/supabase/gotrue)
 
 ## 📚 Documentation
 

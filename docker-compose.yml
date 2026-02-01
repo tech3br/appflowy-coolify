@@ -23,7 +23,7 @@ services:
 
   # PostgreSQL Database
   postgres:
-    image: postgres:15-alpine
+    image: postgres:15.10-alpine
     restart: unless-stopped
     environment:
       POSTGRES_USER: ${POSTGRES_USER:-postgres}
@@ -52,7 +52,7 @@ services:
     networks:
       - appflowy_network
     healthcheck:
-      test: ["CMD", "redis-cli", "--raw", "incr", "ping"]
+      test: ["CMD", "redis-cli", "--no-auth-warning", "-a", "${REDIS_PASSWORD:-redis_password}", "ping"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -61,7 +61,7 @@ services:
 
   # MinIO for S3-compatible object storage
   minio:
-    image: minio/minio:latest
+    image: minio/minio:RELEASE.2024-01-28T22-35-53Z
     restart: unless-stopped
     command: server /data --console-address ":9001"
     environment:
@@ -82,7 +82,7 @@ services:
 
   # GoTrue for authentication
   gotrue:
-    image: supabase/gotrue:latest
+    image: supabase/gotrue:v2.151.0
     restart: unless-stopped
     environment:
       GOTRUE_API_HOST: 0.0.0.0
@@ -117,7 +117,7 @@ services:
 
   # AppFlowy Cloud Application
   appflowy_cloud:
-    image: appflowyinc/appflowy_cloud:latest
+    image: appflowyinc/appflowy_cloud:0.5.10
     restart: unless-stopped
     environment:
       RUST_LOG: ${RUST_LOG:-info}
